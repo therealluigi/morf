@@ -31,8 +31,8 @@ import java.util.List;
 
 import org.alfasoftware.morf.dataset.DataSetConsumer;
 import org.alfasoftware.morf.dataset.DataSetConsumer.CloseState;
-import org.alfasoftware.morf.dataset.MockRecord;
 import org.alfasoftware.morf.dataset.Record;
+import org.alfasoftware.morf.metadata.DataSetUtils;
 import org.alfasoftware.morf.metadata.DataType;
 import org.alfasoftware.morf.metadata.Table;
 import org.alfasoftware.morf.xml.XmlDataSetConsumer.ClearDestinationBehaviour;
@@ -65,7 +65,14 @@ public class TestXmlDataSetConsumer {
 
     testConsumer.open();
     List<Record> mockRecords = new ArrayList<>();
-    mockRecords.add(new MockRecord(metaData, "1", "1", "abc", "123", "456.78"));
+    mockRecords.add(DataSetUtils.record()
+      .value("id", "1")
+      .value("version", "1")
+      .value("bar", "abc")
+      .value("baz", "123")
+      .value("bob", "456.78")
+    );
+    
     testConsumer.table(metaData, mockRecords);
     testConsumer.close(CloseState.COMPLETE);
 
@@ -91,7 +98,14 @@ public class TestXmlDataSetConsumer {
 
     testConsumer.open();
     List<Record> mockRecords = new ArrayList<>();
-    mockRecords.add(new MockRecord(metaData, "1", "1", "noel", "edmonds", "YmxvYmJ5"));
+    mockRecords.add(DataSetUtils.record()
+      .value("id", "1")
+      .value("version", "1")
+      .value("noel", "noel")
+      .value("edmonds", "edmonds")
+      .value("blobby", "YmxvYmJ5")
+    );
+    
     testConsumer.table(metaData, mockRecords);
     testConsumer.close(CloseState.COMPLETE);
 

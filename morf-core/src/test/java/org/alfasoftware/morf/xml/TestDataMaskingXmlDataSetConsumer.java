@@ -30,8 +30,8 @@ import org.junit.Test;
 
 import org.alfasoftware.morf.dataset.DataSetConsumer;
 import org.alfasoftware.morf.dataset.DataSetConsumer.CloseState;
-import org.alfasoftware.morf.dataset.MockRecord;
 import org.alfasoftware.morf.dataset.Record;
+import org.alfasoftware.morf.metadata.DataSetUtils;
 import org.alfasoftware.morf.metadata.DataType;
 import org.alfasoftware.morf.metadata.Table;
 import com.google.common.collect.Maps;
@@ -70,7 +70,14 @@ public class TestDataMaskingXmlDataSetConsumer {
 
     testConsumer.open();
     List<Record> mockRecords = new ArrayList<Record>();
-    mockRecords.add(new MockRecord(metaData, "1", "1", "abc", "123", "456.78"));
+    
+    mockRecords.add(DataSetUtils.record()
+      .value("id", "1")
+      .value("version", "1")
+      .value("bar", "abc")
+      .value("baz", "123")
+      .value("bob", "456.78")
+    );
     testConsumer.table(metaData, mockRecords);
     testConsumer.close(CloseState.COMPLETE);
 
