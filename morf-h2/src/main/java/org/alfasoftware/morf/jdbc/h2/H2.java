@@ -90,7 +90,7 @@ public final class H2 extends AbstractDatabaseType {
   }
 
   /**
-   * @see org.alfasoftware.morf.jdbc.DatabaseType#openSchema(Connection, String, String) 
+   * @see org.alfasoftware.morf.jdbc.DatabaseType#openSchema(Connection, String, String)
    */
   @Override
   public Schema openSchema(Connection connection, String databaseName, String schemaName) {
